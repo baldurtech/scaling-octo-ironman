@@ -7,8 +7,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class HomeServlet extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException,IOException {
+        MemberDao memberDao = new MemberDaoImpl();
 
+        Member member = new Member();
+        member.setUsername(request.getParameter("username"));
+
+        MemberService memberService = new MemberService(memberDao);
+        memberService.save(member);
+
+        response.getWriter().println("Member: " + member);
     }
 }
