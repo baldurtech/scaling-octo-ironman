@@ -6,6 +6,12 @@ public class MemberServiceTest extends MiniatureSpiceTestCase {
     MockMemberDao memberDao = new MockMemberDao();
     MemberService memberService = new MemberService(memberDao);
 
+    public void test_valid_member_should_be_saved() {
+        memberService.save(createMemberWithUsername("Tom"));
+
+        assertTrue(memberDao.saveHasInvoked);
+    }
+
     public void test_username_is_empty_should_not_save() {
         memberService.save(createMemberWithUsername(""));
 
