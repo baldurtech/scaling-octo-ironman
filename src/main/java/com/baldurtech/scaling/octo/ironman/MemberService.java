@@ -16,4 +16,10 @@ public class MemberService {
         }
         return member;
     }
+
+    public Member update(Member member) {
+        Member origMember = memberDao.getById(member.getId());
+        origMember.setUsername(member.getUsername());
+        return memberDao.update(origMember);
+    }
 }

@@ -30,10 +30,32 @@ public class MemberServiceTest extends MiniatureSpiceTestCase {
         assertFalse(memberDao.saveHasInvoked);
     }
 
+    public void test_更新一个已经存在的member() {
+        memberDao.expectedMember =
+            createMemberWithIdAndUsername(1999L, "JJ");
+
+
+        Member member = createMemberWithUsername("Hanks");
+        member.setId(1999L);
+
+        memberService.update(member);
+
+
+        assertEquals("Hanks",
+                     memberDao.updatedMember.getUsername());
+        assertEquals(1999L, memberDao.updatedMember.getId());
+    }
+
     private Member createMemberWithUsername(String username) {
         Member member = new Member();
         member.setUsername(username);
 
+        return member;
+    }
+
+    private Member createMemberWithIdAndUsername(Long id, String username) {
+        Member member = createMemberWithUsername(username);
+        member.setId(id);
         return member;
     }
 }
@@ -41,10 +63,23 @@ public class MemberServiceTest extends MiniatureSpiceTestCase {
 class MockMemberDao implements MemberDao {
     public Boolean saveHasInvoked = false;
     public Member savedMember;
+    public Member expectedMember;
+    public Boolean updateHasInvoked = false;
+    public Member updatedMember;
+
+    public Member getById(Long id) {
+        return expectedMember;
+    }
 
     public Member save(Member member) {
         savedMember = member;
         saveHasInvoked = true;
+        return member;
+    }
+
+    public Member update(Member member) {
+        updatedMember = member;
+        updateHasInvoked = true;
         return member;
     }
 }
