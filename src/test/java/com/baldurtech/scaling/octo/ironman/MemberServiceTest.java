@@ -46,6 +46,19 @@ public class MemberServiceTest extends MiniatureSpiceTestCase {
         assertEquals(1999L, memberDao.updatedMember.getId());
     }
 
+    public void test_更新一个不存在的member应该会失败() {
+        memberDao.expectedMember = null;
+
+
+        Member member = createMemberWithUsername("Hanks");
+        member.setId(1999L);
+
+        memberService.update(member);
+
+
+        assertFalse(memberDao.updateHasInvoked);
+    }
+
     private Member createMemberWithUsername(String username) {
         Member member = new Member();
         member.setUsername(username);
