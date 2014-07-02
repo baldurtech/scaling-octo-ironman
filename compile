@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e
+
+echo "Compile"
+
+mkdir -p target/classes target/test-classes
+
+CLASSPATH=target/classes:target/test-classes
+CLASSPATH=$CLASSPATH:lib/servlet-api.jar
+CLASSPATH=$CLASSPATH:lib/reflections-0.9.9-RC2.jar
+CLASSPATH=$CLASSPATH:~/miniature-spice-unit-test.jar
+
+javac -d target/classes -classpath $CLASSPATH src/main/java/com/baldurtech/scaling/octo/ironman/*.java
+javac -d target/test-classes -classpath $CLASSPATH src/test/java/com/baldurtech/scaling/octo/ironman/*.java
