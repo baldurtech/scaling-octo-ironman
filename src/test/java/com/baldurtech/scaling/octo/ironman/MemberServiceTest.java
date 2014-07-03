@@ -35,10 +35,7 @@ public class MemberServiceTest extends MiniatureSpiceTestCase {
             createMemberWithIdAndUsername(1999L, "JJ");
 
 
-        Member member = createMemberWithUsername("Hanks");
-        member.setId(1999L);
-
-        memberService.update(member);
+        memberService.update(createMemberWithIdAndUsername(1999L, "Hanks"));
 
 
         assertEquals("Hanks",
@@ -50,10 +47,7 @@ public class MemberServiceTest extends MiniatureSpiceTestCase {
         memberDao.expectedMember = null;
 
 
-        Member member = createMemberWithUsername("Hanks");
-        member.setId(1999L);
-
-        memberService.update(member);
+        memberService.update(createMemberWithIdAndUsername(1999L, "Hanks"));
 
 
         assertFalse(memberDao.updateHasInvoked);
