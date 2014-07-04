@@ -39,15 +39,3 @@ public class HomeServletTest extends MiniatureSpiceTestCase {
         assertEquals(expectedMember, dataModel.get("member"));
     }
 }
-
-class MockMemberService extends MemberService {
-    public Member saveShouldReturnMember;
-
-    public MockMemberService() {
-        super(null);
-    }
-
-    public Member save(Member member) {
-        return saveShouldReturnMember;
-    }
-}
