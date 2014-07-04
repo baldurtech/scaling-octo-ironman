@@ -29,6 +29,17 @@ public class HomeServlet extends HttpServlet {
     }
 
     public Map doAction(RequestForm form) {
+        if(form.isPostMethod()) {
+            switch(form.getString("action")) {
+            case "save": return save(form);
+            }
+        }
+        Map dataModel = new HashMap();
+        dataModel.put("statusCode", 403);
+        return dataModel;
+    }
+
+    public Map save(RequestForm form) {
         Member member = new Member();
         member.setUsername(form.getString("username"));
 
