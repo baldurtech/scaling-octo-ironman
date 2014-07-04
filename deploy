@@ -8,4 +8,7 @@ cp -r src/main/webapp $CATALINA_HOME/webapps/member
 cp -r target/classes $CATALINA_HOME/webapps/member/WEB-INF/
 
 cp -r lib $CATALINA_HOME/webapps/member/WEB-INF/
+[[ -d lib-runtime ]] && cp lib-runtime/* $CATALINA_HOME/webapps/member/WEB-INF/lib/
 rm $CATALINA_HOME/webapps/member/WEB-INF/lib/servlet-api.jar
+
+echo "Deploy done."
