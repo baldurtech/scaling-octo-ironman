@@ -32,4 +32,14 @@ public class HomeServletTest extends ScalingOctoIronmanTestCase {
         assertEquals("edit", dataModel.get("forward"));
         assertEquals(expectedMember, dataModel.get("member"));
     }
+
+    public void test_保存member的时候使用GET方法要失败() {
+        form.useGetMethod();
+
+
+        Map dataModel = homeServlet.doAction(form);
+
+
+        assertEquals(403, (int)dataModel.get("statusCode"));
+    }
 }

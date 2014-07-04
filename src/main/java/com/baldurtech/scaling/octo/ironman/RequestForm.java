@@ -12,4 +12,12 @@ public class RequestForm {
     public String getString(String param) {
         return request.getParameter(param);
     }
+
+    public Boolean isGetMethod() {
+        return "GET".equals(request.getMethod());
+    }
+
+    public Boolean isPostMethod() {
+        return "POST".equals(request.getMethod());
+    }
 }
