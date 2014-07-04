@@ -21,7 +21,7 @@ public class HomeServlet extends HttpServlet {
         this.memberService = memberService;
     }
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
+    public void service(HttpServletRequest request, HttpServletResponse response)
         throws ServletException,IOException {
 
         Map dataModel = doAction(new RequestForm(request));
