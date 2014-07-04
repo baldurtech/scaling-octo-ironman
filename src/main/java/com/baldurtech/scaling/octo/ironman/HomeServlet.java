@@ -32,10 +32,16 @@ public class HomeServlet extends HttpServlet {
         Member member = new Member();
         member.setUsername(form.getString("username"));
 
-        Member savedMember = memberService.save(member);
+        member = memberService.save(member);
 
         Map dataModel = new HashMap();
-        dataModel.put("redirectTo", "list");
+
+        if(member.getId() == null) {
+            dataModel.put("forward", "edit");
+            dataModel.put("member", member);
+        } else {
+            dataModel.put("redirectTo", "list");
+        }
 
         return dataModel;
     }
