@@ -5,9 +5,7 @@ import java.util.HashMap;
 
 public class HomeServletTest extends ScalingOctoIronmanTestCase {
     public void test_member保存成功后要返回list页面() {
-        Member expectedMember = new Member();
-        expectedMember.setUsername("Tom");
-        expectedMember.setId(1L);
+        Member expectedMember = createMemberWithIdAndUsername(1L, "Tom");
 
         MockMemberService memberService = new MockMemberService();
         memberService.saveShouldReturnMember = expectedMember;
@@ -22,8 +20,7 @@ public class HomeServletTest extends ScalingOctoIronmanTestCase {
     }
 
     public void test_member保存失败后要返回编辑页面() {
-        Member expectedMember = new Member();
-        expectedMember.setUsername(" Tom ");
+        Member expectedMember = createMemberWithUsername(" Tom ");
 
         MockMemberService memberService = new MockMemberService();
         memberService.saveShouldReturnMember = expectedMember;
