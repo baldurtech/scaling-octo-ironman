@@ -1,8 +1,6 @@
 package com.baldurtech.scaling.octo.ironman;
 
-import com.baldurtech.unit.MiniatureSpiceTestCase;
-
-public class MemberServiceTest extends MiniatureSpiceTestCase {
+public class MemberServiceTest extends ScalingOctoIronmanTestCase {
     MockMemberDao memberDao = new MockMemberDao();
     MemberService memberService = new MemberService(memberDao);
 
@@ -51,18 +49,5 @@ public class MemberServiceTest extends MiniatureSpiceTestCase {
 
 
         assertFalse(memberDao.updateHasInvoked);
-    }
-
-    private Member createMemberWithUsername(String username) {
-        Member member = new Member();
-        member.setUsername(username);
-
-        return member;
-    }
-
-    private Member createMemberWithIdAndUsername(Long id, String username) {
-        Member member = createMemberWithUsername(username);
-        member.setId(id);
-        return member;
     }
 }
