@@ -1,10 +1,9 @@
 package com.baldurtech.scaling.octo.ironman;
 
-import com.baldurtech.unit.MiniatureSpiceTestCase;
 import java.util.Map;
 import java.util.HashMap;
 
-public class HomeServletTest extends MiniatureSpiceTestCase {
+public class HomeServletTest extends ScalingOctoIronmanTestCase {
     public void test_member保存成功后要返回list页面() {
         Member expectedMember = new Member();
         expectedMember.setUsername("Tom");
