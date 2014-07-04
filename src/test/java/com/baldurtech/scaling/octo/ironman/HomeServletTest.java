@@ -51,19 +51,3 @@ class MockMemberService extends MemberService {
         return saveShouldReturnMember;
     }
 }
-
-class MockRequestForm extends RequestForm {
-    Map data = new HashMap();
-
-    public MockRequestForm() {
-        super(null);
-    }
-
-    public void set(String param, String value) {
-        data.put(param, value);
-    }
-
-    public String getString(String param) {
-        return (String) data.get(param);
-    }
-}
