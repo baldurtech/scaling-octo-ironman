@@ -1,22 +1,42 @@
 package com.baldurtech.scaling.octo.ironman;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.HashMap;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class HomeServlet extends HttpServlet {
+
+    private final MemberService memberService;
+
+    public HomeServlet() {
+        this(new MemberService(new MemberDaoImpl()));
+    }
+
+    public HomeServlet(MemberService memberService) {
+        super();
+        this.memberService = memberService;
+    }
+
     public void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException,IOException {
-        MemberDao memberDao = new MemberDaoImpl();
 
+        Map dataModel = doAction(new RequestForm(request));
+        response.getWriter().println(dataModel);
+    }
+
+    public Map doAction(RequestForm form) {
         Member member = new Member();
-        member.setUsername(request.getParameter("username"));
+        member.setUsername(form.getString("username"));
 
-        MemberService memberService = new MemberService(memberDao);
-        memberService.save(member);
+        Member savedMember = memberService.save(member);
 
-        response.getWriter().println("Member: " + member);
+        Map dataModel = new HashMap();
+        dataModel.put("redirectTo", "list");
+
+        return dataModel;
     }
 }
